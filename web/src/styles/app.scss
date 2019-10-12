@@ -1,0 +1,59 @@
+@import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/fab/mdc-fab";
+@import "@material/elevation/mdc-elevation";
+
+
+$body-color: slateblue;
+
+body {
+  color: $body-color;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+
+.app-fab--absolute {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+}
+
+
+
+.video-stream-wrapper{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 20%;
+  bottom: 20%;
+  left: 5%;
+  right: 5%;
+}
+
+@media screen and ( min-height: 800px ){
+
+    .app-fab--absolute {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+    }
+
+  .video-stream-wrapper{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 10%;
+    bottom: 20%;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+
+.streamImage{
+  margin: auto;
+  max-height:95%;
+  object-fit: contain;
+  width: 95%;
+}

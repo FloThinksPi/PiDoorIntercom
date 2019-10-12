@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>webpack starterkit</title>
+  <link rel="stylesheet" href="bundle.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<header class="mdc-top-app-bar">
+  <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Settings">settings</button>
+      <span class="mdc-top-app-bar__title">PiDoorIntercom</span>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+    </section>
+  </div>
+</header>
+
+<div class="mdc-elevation--z22 video-stream-wrapper">
+  <img id="streamImage" class="streamImage" src="/video" alt="No connection to PiDoorIntercom" >
+</div>
+
+<button class="mdc-fab app-fab--absolute" aria-label="Talk">
+  <span class="mdc-fab__icon material-icons">record_voice_over</span>
+</button>
+
+</body>
+</html>
