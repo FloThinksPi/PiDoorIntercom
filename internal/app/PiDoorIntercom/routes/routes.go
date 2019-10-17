@@ -20,7 +20,7 @@ func Video(c *gin.Context) {
 		mutex.Lock()
 		data = "--frame\r\n  Content-Type: image/jpeg\r\n\r\n" + string(camera.GetFrame()) + "\r\n\r\n"
 		mutex.Unlock()
-		time.Sleep(33 * time.Millisecond)
+		time.Sleep(66 * time.Millisecond)
 		_, _ = c.Writer.Write([]byte(data))
 	}
 }

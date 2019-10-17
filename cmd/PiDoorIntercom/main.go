@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/FloThinksPi/PiDoorIntercom/internal/app/PiDoorIntercom/bell"
 	routes2 "github.com/FloThinksPi/PiDoorIntercom/internal/app/PiDoorIntercom/routes"
 	"os"
 )
@@ -12,6 +13,8 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+
+	bell.StartBell()
 
 	r := routes2.SetupRoutes()
 
