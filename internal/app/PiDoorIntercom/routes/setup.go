@@ -8,6 +8,7 @@ import (
 // SetupRoutes connects the HTTP API endpoints to the handlers
 func SetupRoutes() *gin.Engine {
 	r := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
 
 	r.Use(static.Serve("/", static.LocalFile("./webpage", true)))
 	r.Static("/css", "css")

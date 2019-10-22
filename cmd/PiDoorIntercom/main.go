@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const defaultPort string = "3000"
+const defaultPort string = "8080"
 
 func main() {
 	port := os.Getenv("PORT")
@@ -14,9 +14,9 @@ func main() {
 		port = defaultPort
 	}
 
-	bell.StartBell()
+	bell.InitBellWatcher()
 
 	r := routes2.SetupRoutes()
 
-	r.Run(":" + port)
+	_ = r.Run(":" + port)
 }

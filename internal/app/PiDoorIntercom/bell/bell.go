@@ -9,44 +9,45 @@ import (
 
 var (
 	err     error
-	btnPin = rpio.Pin(14)
-	ledPin = rpio.Pin(15)
-	numBlink = 8
-	blinkTime = 0.3
+	blinkTime = 300
+	blinkCycles = 8
 	gongURL = "http://192.168.1.5/gong"
+
 )
 
-func StartBell(){
-	if err := rpio.Open(); err != nil {
+func InitBellWatcher(){
+
+	// Setup
+	if rpio.Open() != nil {
 		fmt.Println(err)
 		fmt.Printf("This is probably not running on a RaspberryPI\n")
 		return
 	}
+	btn := rpio.Pin(14)
+	btn.Input()
+	btn.PullDown()
+	led := rpio.Pin(15)
+	led.Output()
 
-//defer rpio.Close()
-	ledPin.Output()
+	// Bell Logic
+	go pollBellButton(led,btn)
 
-	btnPin.Input()
-	btnPin.PullDown()
-	btnPin.Detect(rpio.RiseEdge) // enable falling edge event detection
-
-	go startBellWatcher()
 }
 
-func startBellWatcher() {
-	for {
-		if btnPin.EdgeDetected() { // check if event occured
-			for x := 0; x < numBlink; x++ {
-				ledPin.Toggle()
-				time.Sleep(time.Second / 5)
+func pollBellButton(ledPin rpio.Pin,btnPin rpio.Pin){
+	for true {
+		if btnPin.Read() == rpio.High {
+			print("Button Press detected\n")
+			for p := 0; p < 2; p++ {
+				_, err = http.Get(gongURL)
+				for i := 0; i < blinkCycles; i++ {
+					ledPin.High()
+					time.Sleep(time.Millisecond * time.Duration(blinkTime))
+					ledPin.Low()
+					time.Sleep(time.Millisecond * time.Duration(blinkTime))
+				}
 			}
-			resp, err := http.Get(gongURL)
-			if err != nil {
-				fmt.Printf("Could not find Gong\n")
-			}
-			resp.Body.Close()
 		}
-		time.Sleep(time.Second / 2)
-		fmt.Printf("This is probably not running on a RaspberryPI\n")
+		time.Sleep(time.Millisecond * 50)
 	}
 }
