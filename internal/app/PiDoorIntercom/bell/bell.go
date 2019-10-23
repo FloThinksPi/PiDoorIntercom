@@ -19,8 +19,7 @@ func InitBellWatcher(){
 
 	// Setup
 	if rpio.Open() != nil {
-		fmt.Println(err)
-		fmt.Printf("This is probably not running on a RaspberryPI\n")
+		fmt.Printf("Error accesing GPIOs. This is likely not running on a RaspberryPI with Raspbian\n")
 		return
 	}
 	btn := rpio.Pin(14)

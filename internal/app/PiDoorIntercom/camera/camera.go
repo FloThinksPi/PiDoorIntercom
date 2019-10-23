@@ -17,7 +17,7 @@ func init() {
 
 	camera, err = gocv.VideoCaptureDevice(0)
 	if err != nil {
-		fmt.Printf("Error opening capture device: \n")
+		fmt.Printf("Error opening Camera. Is the Camera connected ? Is the Rapsbperry Camera activated via raspi-config ?: \n")
 		return
 	}
 

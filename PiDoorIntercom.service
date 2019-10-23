@@ -1,0 +1,11 @@
+[Unit]
+Description=PiDoorIntercom Server
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/flo/PiDoorIntercom/
+ExecStart=/home/flo/PiDoorIntercom/bin/PiDoorIntercom
+Environment=PORT=80
+
+[Install]
+WantedBy=multi-user.target
